@@ -1,0 +1,33 @@
+{
+  "name": "belibe",
+  "version": "1.0.0",
+  "description": "Express application with MariaDB, Sequelize, and OAuth",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "bun src/index.js",
+    "dev": "bun --watch src/index.js",
+    "test": "bun test"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "sequelize": "^6.35.1",
+    "mariadb": "^3.2.2",
+    "passport": "^0.7.0",
+    "passport-google-oauth20": "^2.0.0",
+    "passport-line": "^0.0.4",
+    "express-session": "^1.17.3",
+    "dotenv": "^16.3.1",
+    "cors": "^2.8.5",
+    "helmet": "^7.1.0",
+    "cookie-parser": "^1.4.6",
+    "jsonwebtoken": "^9.0.2",
+    "bcryptjs": "^2.4.3"
+  },
+  "devDependencies": {
+    "bun-types": "latest"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

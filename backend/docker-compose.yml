@@ -1,0 +1,62 @@
+version: "3.8"
+
+services:
+  # Express application
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: belibe-app
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    environment:
+      - NODE_ENV=development
+      - PORT=5000
+      - DB_HOST=mariadb
+      - DB_PORT=3306
+      - DB_NAME=belibe
+      - DB_USER=belibe_user
+      - DB_PASSWORD=belibe_password
+      - JWT_SECRET=xxxxx
+      - JWT_EXPIRES_IN=7d
+      - GOOGLE_CLIENT_ID=xxxxx
+      - GOOGLE_CLIENT_SECRET=xxxxx
+      - GOOGLE_CALLBACK_URL=http://localhost:5000/api/auth/google/callback
+      - LINE_CLIENT_ID=xxxxx
+      - LINE_CLIENT_SECRET=xxxxx
+      - LINE_CALLBACK_URL=xxxxx
+      - SESSION_SECRET=xxxxx
+    volumes:
+      - ./src:/app/src
+      - ./node_modules:/app/node_modules
+    depends_on:
+      - mariadb
+    networks:
+      - belibe-network
+
+  # MariaDB database
+  mariadb:
+    image: mariadb:latest
+    container_name: belibe-mariadb
+    restart: unless-stopped
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root_password
+      - MYSQL_DATABASE=belibe
+      - MYSQL_USER=belibe_user
+      - MYSQL_PASSWORD=belibe_password
+    volumes:
+      - ./belibe-data:/var/lib/mysql
+      - ./init-scripts:/docker-entrypoint-initdb.d
+    networks:
+      - belibe-network
+
+networks:
+  belibe-network:
+    driver: bridge
+
+volumes:
+  mariadb-data:
+    driver: local
