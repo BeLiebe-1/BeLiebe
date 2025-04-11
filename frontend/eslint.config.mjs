@@ -1,33 +1,35 @@
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-import { FlatCompat } from '@eslint/eslintrc';
+import { FlatCompat } from "@eslint/eslintrc";
+import js from "@eslint/js";
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const compat = new FlatCompat({
-  baseDirectory: __dirname
+  baseDirectory: __dirname,
+  recommendedConfig: js.configs.recommended
 });
 
 const eslintConfig = [
   ...compat.extends(
-    'next/core-web-vitals',
-    'next/typescript',
-    'prettier',
-    'plugin:@next/next/recommended'
+    "next/core-web-vitals",
+    "next/typescript",
+    "prettier",
+    "plugin:@next/next/recommended"
   ),
-  ...compat.plugins('prettier', 'simple-import-sort', 'unused-imports'),
+  ...compat.plugins("prettier", "simple-import-sort", "unused-imports"),
   ...compat.config({
-    extends: 'eslint:recommended',
+    extends: "eslint:recommended",
     rules: {
-      'prettier/prettier': [
-        'warn',
+      "prettier/prettier": [
+        "warn",
         {
-          arrowParens: 'always',
+          arrowParens: "always",
           semi: true,
-          trailingComma: 'none',
+          trailingComma: "none",
           tabWidth: 2,
-          endOfLine: 'auto',
+          endOfLine: "auto",
           useTabs: false,
           singleQuote: false,
           printWidth: 80,
@@ -35,54 +37,54 @@ const eslintConfig = [
         }
       ],
       // Import sorting
-      'simple-import-sort/imports': [
-        'warn',
+      "simple-import-sort/imports": [
+        "warn",
         {
           groups: [
             // React and React DOM related packages
-            ['^react', '^next'],
+            ["^react", "^next"],
 
             // Tanstack, Redux ecosystem and routing
-            ['^@tanstack', '@ant-design'],
+            ["^@tanstack", "@ant-design"],
 
             // Internal paths starting with @/
-            ['^@/'],
+            ["^@/"],
 
             // Other third party packages starting with @ or plain words
-            ['^@?\\w'],
+            ["^@?\\w"],
 
             // Packages starting with ~ (often used for internal aliases)
-            ['^~?\\w'],
+            ["^~?\\w"],
 
             // All other third party imports
-            ['^'],
+            ["^"],
 
             // Relative imports (parent or current directory)
-            ['^\\./(?=.*/)(?!/?$)', '^\\./?$'],
+            ["^\\./(?=.*/)(?!/?$)", "^\\./?$"],
 
             // Side effect imports and types
-            ['^\\u0000']
+            ["^\\u0000"]
           ]
         }
       ],
-      'simple-import-sort/exports': 'warn',
+      "simple-import-sort/exports": "warn",
 
       // Unused imports
-      'unused-imports/no-unused-imports': 'error',
-      'unused-imports/no-unused-vars': [
-        'warn',
+      "unused-imports/no-unused-imports": "error",
+      "unused-imports/no-unused-vars": [
+        "warn",
         {
-          vars: 'all',
-          varsIgnorePattern: '^_',
-          args: 'after-used',
-          argsIgnorePattern: '^_'
+          vars: "all",
+          varsIgnorePattern: "^_",
+          args: "after-used",
+          argsIgnorePattern: "^_"
         }
       ],
 
       // Import rules
-      'import/first': 'error',
-      'import/newline-after-import': 'error',
-      'import/no-duplicates': 'error'
+      "import/first": "error",
+      "import/newline-after-import": "error",
+      "import/no-duplicates": "error"
     }
   })
 ];
