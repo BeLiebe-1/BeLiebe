@@ -45,7 +45,10 @@ const eslintConfig = [
             ["^react", "^next"],
 
             // Tanstack, Redux ecosystem and routing
-            ["^@tanstack", "@ant-design"],
+            ["^@tanstack", "@ant-design", "@hookform"],
+
+            // All other third party imports
+            ["^"],
 
             // Internal paths starting with @/
             ["^@/"],
@@ -55,9 +58,6 @@ const eslintConfig = [
 
             // Packages starting with ~ (often used for internal aliases)
             ["^~?\\w"],
-
-            // All other third party imports
-            ["^"],
 
             // Relative imports (parent or current directory)
             ["^\\./(?=.*/)(?!/?$)", "^\\./?$"],
@@ -84,7 +84,9 @@ const eslintConfig = [
       // Import rules
       "import/first": "error",
       "import/newline-after-import": "error",
-      "import/no-duplicates": "error"
+      "import/no-duplicates": "error",
+
+      "@next/next/no-img-element": "off"
     }
   })
 ];
