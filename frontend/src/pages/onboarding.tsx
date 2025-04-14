@@ -1,15 +1,22 @@
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 import Egg from "@/assets/egg.svg";
 
 import { Button, Form, Input } from "antd";
 
 export default function Onboarding() {
+  const router = useRouter();
   const [form] = Form.useForm<{ name: string }>();
 
   const nameValue = Form.useWatch("name", form);
 
   const [isSuccess, setIsSuccess] = useState(false);
+
+  const handleClickSubmit = () => {
+    if (isSuccess) router.push("/");
+    else setIsSuccess(true);
+  };
 
   return (
     <div className="flex h-screen flex-col items-center justify-between bg-white p-6">
@@ -54,7 +61,7 @@ export default function Onboarding() {
         <div className="mt-auto">
           <Button
             className="w-full rounded-md bg-gray-500 py-3 text-white hover:bg-gray-600"
-            onClick={() => setIsSuccess(true)}
+            onClick={handleClickSubmit}
             disabled={!nameValue}
           >
             {isSuccess ? "はじめる" : "つぎへ"}
