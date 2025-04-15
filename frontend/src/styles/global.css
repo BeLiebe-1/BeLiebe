@@ -1,14 +1,23 @@
 @import "tailwindcss";
 
 @theme {
-  --color-dark-grey: #878787
+  --color-dark-grey: #878787;
+  --color-light-orange: #E88D6A;
+  --color-light-grey: #999999;
+  --color-red: #E12E2E;
+  --color-border: #EDEEEF;
+  --color-background: #FAFAFA;
 }
 
-
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-jost), Arial, Helvetica, sans-serif;
   max-width: 480px; /* Or another mobile breakpoint */
   margin: 0 auto;
-  padding: 0 3rem;
+  padding: 0;
   position: relative; /* Optional: useful for absolutely positioned children */
+  letter-spacing: 0.1em;
+}
+
+.font-sans {
+  font-family: var(--font-jost), Arial, Helvetica, sans-serif;
 }
