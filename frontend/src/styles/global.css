@@ -3,10 +3,27 @@
 @theme {
   --color-dark-grey: #878787;
   --color-light-orange: #E88D6A;
-  --color-light-grey: #999999;
+  --color-light-grey: #FAFAFA;
   --color-red: #E12E2E;
   --color-border: #EDEEEF;
   --color-background: #FAFAFA;
+}
+
+  /* Force the inner tick container to be a perfect circle */
+.ant-checkbox-inner {
+  @apply !rounded-full;
+}
+
+.ant-checkbox-disabled .ant-checkbox-inner {
+  @apply bg-light-grey border-0;
+}
+
+.ant-checkbox-disabled .ant-checkbox-inner:after {
+  @apply border-[#E88D6A] ;
+}
+
+.ant-btn-color-primary {
+  @apply !py-3 !h-auto rounded-full;
 }
 
 body {

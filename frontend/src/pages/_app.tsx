@@ -20,6 +20,11 @@ export default function App({ Component, pageProps }: AppProps) {
           theme={{
             token: {
               colorPrimary: "#E88D6A"
+            },
+            components: {
+              Checkbox: {
+                colorPrimary: "#E88D6A"
+              }
             }
           }}
         >
